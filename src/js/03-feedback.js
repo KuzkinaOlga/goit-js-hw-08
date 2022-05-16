@@ -1,9 +1,13 @@
 import throttle from 'lodash.throttle';
+
 const LOCALSTORAGE_KEY = "feedback-form-state";
 const formRef = document.querySelector(".feedback-form");
+
 formRef.addEventListener('input', throttle(handlFormInput, 500))
 formRef.addEventListener('submit', handlFormSubmit)
+
 initForm();
+
 function handlFormInput(event) {
     let persistedFilters = localStorage.getItem(LOCALSTORAGE_KEY);
     persistedFilters = persistedFilters ? JSON.parse(persistedFilters) : {}
