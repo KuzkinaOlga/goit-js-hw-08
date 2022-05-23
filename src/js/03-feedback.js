@@ -25,9 +25,18 @@ function initForm() {
 }
 function handlFormSubmit(event) {
     event.preventDefault();
+    const {
+        elements: { email, message }
+    } = event.currentTarget;
+    if (email.value === "" || message.value === "") {
+        return alert ("!!!!!")
+    }
     const formData = new FormData(formRef);
     formData.forEach((value, name) => console.log(value, name));
     event.currentTarget.reset();
     localStorage.removeItem(LOCALSTORAGE_KEY)
+
+    console.log({ email: email.value, message: message.value });
+    event.currentTarget.reset()
 }
 

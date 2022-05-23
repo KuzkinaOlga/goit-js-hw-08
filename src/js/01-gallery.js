@@ -1,32 +1,22 @@
 // Add imports above this line
 import { galleryItems } from './gallery-items';
 // Change code below this line
-
+import photoCardTpl from '../templates/photo-card.hbs'
 console.log(galleryItems);
-import SimpleLightbox from 'simplelightbox';
+import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-console.log(SimpleLightbox);
+console.log(photoCardTpl);
+
+
 
 const galleryContainer = document.querySelector('.gallery');
 const cardsPhotos = createCardsPhotos(galleryItems);
-galleryContainer.insertAdjacentHTML('beforeend', cardsPhotos.join(''));
+galleryContainer.insertAdjacentHTML('beforeend', cardsPhotos);
 
 function createCardsPhotos(photos) {
-    return photos
-        .map(({ preview, original, description }) => {
-            return `
-            <li class="gallery__item">
-  <a class="gallery__link" 
-  href="${original}">
-    <img
-      class="gallery__image"
-      src="${preview}"
-      alt="${description}"
-    />
-  </a>
-</li>`
-            
-    })
+  return photos
+    .map(photoCardTpl).join('');
     
 }
+
 const lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250, captionPosition: 'bottom' });
